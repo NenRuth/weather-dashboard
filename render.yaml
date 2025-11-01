@@ -4,7 +4,7 @@
     env: python
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "gunicorn weatherdb.wsgi:application"
+    startCommand: "cd weather_dashboard && gunicorn weatherdb.wsgi:application"
     envVars:
       - key: DEBUG
         value: "False"
