@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -o errexit
 cd weather_dashboard
 pip install -r requirements.txt
