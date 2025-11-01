@@ -1,0 +1,16 @@
+﻿services:
+  - type: web
+    name: weather-dashboard
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn weatherdb.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: OPENWEATHER_API_KEY
+        value: "8191fbdb33e14562ad956b29ca9b0600"
+      - key: WEB_CONCURRENCY
+        value: "4"
