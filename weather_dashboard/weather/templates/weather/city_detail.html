@@ -1,0 +1,63 @@
+{% extends 'weather/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ city.name }}, {{ city.country }}</h1>
+    
+    {% if weather %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Current Weather</h3>
+                    <p><strong>Temperature:</strong> {{ weather.temperature }}°C</p>
+                    <p><strong>Feels Like:</strong> {{ weather.feels_like }}°C</p>
+                    <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+                    <p><strong>Wind Speed:</strong> {{ weather.wind_speed }} m/s</p>
+                    <p><strong>Description:</strong> {{ weather.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Temperature Trend Chart -->
+    {% if temp_chart %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>7-Day Temperature Forecast</h4>
+        </div>
+        <div class="card-body">
+            <img src="{{ MEDIA_URL }}{{ temp_chart }}" alt="Temperature Trend" class="img-fluid">
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Humidity Chart -->
+    {% if humidity_chart %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>Humidity Levels</h4>
+        </div>
+        <div class="card-body">
+            <img src="{{ MEDIA_URL }}{{ humidity_chart }}" alt="Humidity Levels" class="img-fluid">
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Hourly Forecast Chart -->
+    {% if hourly_chart %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>24-Hour Forecast</h4>
+        </div>
+        <div class="card-body">
+            <img src="{{ MEDIA_URL }}{{ hourly_chart }}" alt="Hourly Forecast" class="img-fluid">
+        </div>
+    </div>
+    {% endif %}
+    
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}

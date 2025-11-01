@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f7ff;
+            text-align: center;
+            padding-top: 50px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .weather-card {
+            background: white;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌦️ Weather Dashboard</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="city" placeholder="Enter city name" value="{{ city }}" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if weather_data %}
+        {% if weather_data.error %}
+            <p class="error">{{ weather_data.error }}</p>
+        {% else %}
+            <div class="weather-card">
+                <h2>{{ weather_data.city }}</h2>
+                <img src="https://openweathermap.org/img/wn/{{ weather_data.icon }}@2x.png" alt="Weather Icon">
+                <p>{{ weather_data.temperature }}°C</p>
+                <p>{{ weather_data.description }}</p>
+            </div>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
+

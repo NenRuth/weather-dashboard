@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h2> Settings</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Temperature Unit</label>
+            <select name="unit" class="form-select">
+                <option value="metric" {% if pref.unit == "metric" %}selected{% endif %}>Celsius</option>
+                <option value="imperial" {% if pref.unit == "imperial" %}selected{% endif %}>Fahrenheit</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Theme</label>
+            <select name="theme" class="form-select">
+                <option value="light" {% if pref.theme == "light" %}selected{% endif %}>Light</option>
+                <option value="dark" {% if pref.theme == "dark" %}selected{% endif %}>Dark</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Preferences</button>
+    </form>
+    <a href="{% url 'dashboard' %}" class="btn btn-link mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>
