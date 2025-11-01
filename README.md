@@ -3,7 +3,7 @@ https://weather-dashboard-wewn.onrender.com/
 This is a full-stack Django web application that provides real-time weather data and interactive visualizations for cities worldwide.
 
 Stack & Skills 
-* Backend Development
+Backend Development
 - Django 5.2.7 
 - RESTful API Integration (OpenWeatherMap API consumption)
 - Database Modeling (SQLite with Django ORM)
